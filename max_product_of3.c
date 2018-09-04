@@ -27,7 +27,7 @@ int max_product_3(int arr[], int size) {
         }
     }
     int p1 = max[0] * max[1] * max[2];
-    int p2 = min[0] * min [1] * max[2];
+    int p2 = min[0] * min[1] * max[2];
     //if (p1 > p2) 
     //    return p1;
     return (p1 > p2)? p1 :  p2;

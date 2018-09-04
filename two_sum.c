@@ -1,7 +1,41 @@
+/*
+ * Given nums = [2, 7, 11, 15], target = 9,
+ * Because nums[0] + nums[1] = 2 + 7 = 9,
+ * return [0, 1].
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
 
+/* n2 solution
+int* twoSum(int* nums, int numsSize, int target) {
+    int i, j;
+    int *res = NULL;
+    if (nums == NULL)
+        return NULL;
+    if (numsSize == 0 || numsSize == 1)
+        return NULL;
+
+    for (i=0; i<numsSize-1; i++){
+        for (j=i+1;j<numsSize;j++){
+            if (nums[i]+nums[j] == target){
+                res = malloc(2*sizeof(int));
+                res[0]=i;
+                res[1]=j;
+                return res;
+            }
+        }
+    }
+    return res;
+}
+*/
+
+
+/* solution with hashmap
+ * insert the number in hashmap, while putting check is complementary (target-num) exists.
+ */
 int* twoSum(int* nums, int numsSize, int target) {
     int i, j;
     int *res = NULL;
