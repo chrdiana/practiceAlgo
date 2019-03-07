@@ -20,14 +20,8 @@ Node * insertNode (Node *head, int data) {
 	}
 	newNode->data = data;
 
-	//empty list, first node
-	if (!head) {
-		printf("Inserting %d as first entry\n", data);
-		newNode->next =NULL;
-		return newNode;
-	}
 	//insert at head
-	if (head->data >= data) {
+	if (!head || head->data >= data) {
 		printf("Inserting %d at head\n", data);
 	    newNode->next = head;
 	    head = newNode;
@@ -55,6 +49,27 @@ Node * insertNode (Node *head, int data) {
 	return head;
 }
 
+Node * insertNode2(Node *head, int data) {
+	Node *newNode = malloc(sizeof(Node));
+	if (!newNode) {
+		return NULL;
+	}
+	newNode->data = data;
+
+	if (head == NULL || head->data >= data) {
+		newNode->next = head;
+		head = newNode;
+	} else {
+		Node *tmp = head;
+		while (tmp->next != NULL && tmp->next->data < data) {
+			tmp = tmp->next;
+		}
+		newNode->next = tmp->next;
+		tmp->next = newNode;
+	}
+	return head;
+}
+
 Node * deleteNode (Node *head, int data) {
 
 	Node *tmp = head;
@@ -69,9 +84,22 @@ Node * deleteNode (Node *head, int data) {
 		printf("deleting %d at head\n", data);
 		head = head->next;
 		free(tmp);
-		return head;
+	} else {
+		tmp = head->next;
+		prev = head;
+		while (tmp != NULL && tmp->data != data) {
+			prev = tmp;
+			tmp = tmp->next;
+		}
+		if (tmp) {
+			printf("Deleting %d\n", tmp->data);
+			prev->next = tmp->next;
+			free(tmp);
+		} else {
+			printf("%d is not present in list\n", data);
+		}
 	}
-	tmp = head->next;
+	/*tmp = head->next;
 	prev = head;
 	while (tmp) {
 		if (tmp->data == data) {
@@ -83,7 +111,9 @@ Node * deleteNode (Node *head, int data) {
 		prev = tmp;
 		tmp = tmp->next;
 	}
-	printf("%d is not present in list\n", data);
+	printf("%d is not present in list\n", data);*/
+
+
 	return head;
 }
 
@@ -119,17 +149,17 @@ int findNode (Node *head, int data) {
 
 int testLinkedList () {
 	Node *list = NULL;
-	list = insertNode(list, 10);
+	list = insertNode2(list, 10);
 	printList(list);
-	list = insertNode(list, 100);
+	list = insertNode2(list, 100);
 	printList(list);
-	list = insertNode(list, 20);
+	list = insertNode2(list, 20);
 	printList(list);
-	list = insertNode(list, 5);
+	list = insertNode2(list, 5);
 	printList(list);
-	list = insertNode(list, 30);
+	list = insertNode2(list, 30);
 	printList(list);
-	list = insertNode(list, 110);
+	list = insertNode2(list, 110);
 
 	printList(list);
 	printf("30: idx=%d\n", findNode(list, 30));

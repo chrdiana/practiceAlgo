@@ -75,9 +75,8 @@ struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2) {
         end->next = NULL;
         //printf("init: head: %d, end: %d, l1: %d, l2: %d\n", head->val, end->val, l1->val, l2->val);
     }
-    printf("init: head: %d, end: %d, l1: %d, l2: %d\n", head->val, end->val, l1->val, l2->val);
-    struct ListNode *tmp = NULL;
-    int i = 0;
+    //printf("init: head: %d, end: %d, l1: %d, l2: %d\n", head->val, end->val, l1->val, l2->val);
+    //int i = 0;
     while (l1 || l2){
         if (!l1){
             end->next = l2; //append l2
@@ -88,13 +87,13 @@ struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2) {
         } else if (l1->val <= l2->val){
             end->next = l1;
             end = end->next;
-            printf("%d1: init: head: %d, end: %d, l1: %d, l2: %d\n", i, head->val, end->val, l1->val, l2->val);
+            //printf("%d1: init: head: %d, end: %d, l1: %d, l2: %d\n", i, head->val, end->val, l1->val, l2->val);
             l1 = l1->next;
             end->next = NULL;
         } else {
             end->next = l2;
             end = end->next;
-            printf("%d2: head: %d, end: %d, l1: %d, l2: %d\n", i, head->val, end->val, l1->val, l2->val);
+            //printf("%d2: head: %d, end: %d, l1: %d, l2: %d\n", i, head->val, end->val, l1->val, l2->val);
             l2 = l2->next;
             end->next = NULL;
         }

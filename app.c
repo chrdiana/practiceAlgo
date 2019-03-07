@@ -10,10 +10,10 @@
 int main () {
 
 	//testStringReversal();
-	//testLinkedList();
+	testLinkedList();
 	//testDNF();
 	//testatoi();
 	//testTrie();
 	//testLCP();
-	testRomanToInt();
+	//testRomanToInt();
 }
